@@ -7,6 +7,10 @@ async function createFavicons() {
   const outputDir = 'src/assets/images/favicon';
   fs.mkdirSync(outputDir, {recursive: true});
 
+  if (!pathToSvgLogo | !fs.existsSync(pathToSvgLogo)) {
+    return;
+  }
+  
   // Get the SVG logo
   const svgBuffer = fs.readFileSync(pathToSvgLogo);
 

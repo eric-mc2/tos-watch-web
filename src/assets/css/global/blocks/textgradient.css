@@ -8,6 +8,14 @@
 
 .gradient-text-linear {
   color: transparent;
+  background-image: var(--gradient-stripes);
+  background-size: 100%;
+  background-repeat: repeat;
+  background-clip: text;
+}
+
+.gradient-text-rainbow {
+  color: transparent;
   background-image: var(--gradient-rainbow);
   background-size: 100%;
   background-repeat: repeat;

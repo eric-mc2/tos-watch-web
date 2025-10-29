@@ -1,8 +1,8 @@
 {
-  "name": "eleventy-excellent",
-  "version": "4.5.0",
-  "description": "Eleventy starter built around the workflow suggested by Andy Bell's buildexcellentwebsit.es.",
-  "author": "Lene Saile",
+  "name": "tos-watch",
+  "version": "0.1.0",
+  "description": "Explanations and ratings of new terms service agreements.",
+  "author": "Eric Chandler",
   "license": "ISC",
   "type": "module",
   "engines": {
@@ -26,7 +26,7 @@
   "keywords": [],
   "repository": {
     "type": "git",
-    "url": "https://github.com/madrilene/eleventy-excellent.git"
+    "url": "https://github.com/eric-mc2/who-knows.git"
   },
   "dependencies": {
     "@11ty/eleventy": "^3.1.2",

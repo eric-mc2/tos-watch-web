@@ -1,11 +1,8 @@
-email: hola@somemail.com
+email: support@toswatch.info
 address: |-
   Organization name
   Your street
   12345, city
-  Tel: +34 928231911
+  Tel: +1 000-000-0000
 platforms:
-  github: 'https://github.com/madrilene/eleventy-excellent'
-  mastodon: 'https://front-end.social/@lene'
-  bluesky: 'https://bsky.app/profile/lenesaile.com'
-  kofi: 'https://ko-fi.com/lenesaile'
+  github: 'https://github.com/eric-mc2/who-knows'

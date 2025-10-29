@@ -5,12 +5,16 @@ export default {
       url: '/about/'
     },
     {
-      text: 'Docs',
-      url: '/get-started/'
+      text: 'Services',
+      url: '/services/'
     },
     {
-      text: 'Built with',
-      url: '/built-with/'
+      text: 'Policies',
+      url: '/policies/'
+    },
+    {
+      text: 'Diffs',
+      url: '/diffs/'
     },
     {
       text: 'Blog',
@@ -23,16 +27,12 @@ export default {
       url: '/styleguide/'
     },
     {
-      text: 'Imprint',
-      url: '/imprint/'
+      text: 'Legal',
+      url: '/legal/'
     },
     {
       text: 'Privacy',
       url: '/privacy/'
     },
-    {
-      text: 'Accessibility',
-      url: '/accessibility/'
-    }
   ]
 };

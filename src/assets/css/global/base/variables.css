@@ -11,10 +11,18 @@
   --tracking-wide: 0.04ch;
   --stroke: 1px solid var(--color-bg-accent);
 
-  --gradient-rainbow: linear-gradient(90deg, #cf4662 10%, #fbbe25 30%, #62c95c 50%, #08bccb 75%, #a977d5 90%);
+  --gradient-rainbow: linear-gradient(
+    90deg, 
+    #d02f6f 10%,
+    #c0d02f 30%,
+    #6fd02f 50%,
+    #2f6fd0 75%,
+    #902fd0 90%
+  );
+
   --gradient-conic: conic-gradient(
-    var(--color-primary) 0 28%,
-    var(--color-secondary) 0 67%,
+    var(--color-primary) 0 20%,
+    var(--color-secondary) 0 70%,
     var(--color-tertiary) 0 100%
   );
   --gradient-stripes: linear-gradient(
@@ -36,9 +44,14 @@
   --color-text: var(--color-gray-800);
   --color-bg: var(--color-gray-100);
 
-  --color-primary: var(--color-pink);
+  /* --color-primary: var(--color-pink);
   --color-secondary: var(--color-blue);
-  --color-tertiary: var(--color-gold);
+  --color-tertiary: var(--color-gold); */
+  
+  /* Using color pallate https://accessibility.build/tools/color-palette-generator */
+  --color-primary: #437d1c;
+  --color-secondary: #261c7d;
+  --color-tertiary: #7d1c73;
 
   --color-text-accent: var(--color-gray-700);
   --color-bg-accent: var(--color-gray-200);
@@ -51,10 +64,14 @@
     --color-text: var(--color-gray-100);
     --color-bg: var(--color-gray-800);
 
-    --color-primary: var(--color-pink-subdued);
+    /* --color-primary: var(--color-pink-subdued);
     --color-secondary: var(--color-blue-subdued);
-    --color-tertiary: var(--color-gold-subdued);
+    --color-tertiary: var(--color-gold-subdued); */
 
+    --color-primary: #6fd02f;
+    --color-secondary: #3f2fd0;
+    --color-tertiary: #d02fc0;
+    
     --color-text-accent: var(--color-gray-300);
     --color-bg-accent: var(--color-gray-700);
     --color-bg-accent-2: var(--color-gray-600);
@@ -63,11 +80,16 @@
 :root[data-theme='dark'] {
   --color-text: var(--color-gray-100);
   --color-bg: var(--color-gray-800);
-
-  --color-primary: var(--color-pink-subdued);
+  
+  /* --color-primary: var(--color-pink-subdued);
   --color-secondary: var(--color-blue-subdued);
-  --color-tertiary: var(--color-gold-subdued);
+  --color-tertiary: var(--color-gold-subdued); */
 
+  --color-primary: #6fd02f;
+  --color-secondary: #3f2fd0;
+  --color-tertiary: #d02fc0;
+    
+    
   --color-text-accent: var(--color-gray-300);
   --color-bg-accent: var(--color-gray-700);
   --color-bg-accent-2: var(--color-gray-600);
