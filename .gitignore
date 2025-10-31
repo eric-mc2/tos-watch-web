@@ -6,10 +6,6 @@ dist
 src/_includes/css
 src/_includes/scripts
 
-# data inputs
-src/_data/manifest.json
-src/_data/summary_parsed/*
-
 # cache
 .cache
 

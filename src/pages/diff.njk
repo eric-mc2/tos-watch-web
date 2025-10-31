@@ -1,0 +1,32 @@
+---
+pagination:
+  data: diffs
+  size: 1
+  alias: item
+permalink: "diffs/{{ item.metadata.dataKey }}/index.html"
+---
+
+<h1>{{ item.metadata.company}} | {{ item.metadata.policy }} </h1>
+
+<h2>Revision Date: {{ item.metadata.date }}</h2>
+
+<h2>Legally important? {{ "yes" if item.legally_substantive.rating else "no" }} </h2>
+
+<p>{{item.legally_substantive.explanation}}</p>
+
+<h2>Practically important? {{ "yes" if item.practically_substantive.rating else "no" }} </h2>
+
+<p>{{item.practically_substantive.explanation}}</p>
+
+<strong>Tags:</strong>
+<ol>
+  {% for tag in item.change_keywords %}
+  <li>{{ tag }}</li>
+  {% endfor %}
+  {% for tag in item.subject_keywords %}
+  <li>{{ tag }}</li>
+  {% endfor %}
+  {% for tag in item.helm_keywords %}
+  <li>{{ tag }}</li>
+  {% endfor %}
+</ol>
