@@ -1,0 +1,31 @@
+---
+title: Services
+permalink: /services/index.html
+layout: page
+---
+<article class="styleguide | wrapper flow">
+
+    <table>
+        <thead>
+        <tr>
+            <th>Company</th>
+            <th>Rating</th>
+            <th>Latest Update</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for row in services %}
+        <tr>
+            <td>{{ row.company }}</td>
+            <td>{{ row.rating }}</td>
+            <td><a href="../diffs/{{ row.dataKey }}">{{ row.date }}</a></td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</article>
+
+
+{%- css "local" -%}
+  {%- include 'css/table.css' -%}
+{%- endcss -%}

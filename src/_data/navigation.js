@@ -9,10 +9,6 @@ export default {
       url: '/services/'
     },
     {
-      text: 'Policies',
-      url: '/policies/'
-    },
-    {
       text: 'Diffs',
       url: '/diffs/'
     },
