@@ -1,4 +1,5 @@
 import path from 'path';
+import { Stages } from './stages.js';
 
 // Helper function to convert stream to buffer
 async function streamToBuffer(readableStream) {
@@ -85,7 +86,7 @@ function parseBlobPath(blobPath, container = "documents") {
   }
 
   // Stage validation 
-  if (stage != "summary_parsed") {
+  if (stage != Stages.SUMMARY_CLEAN) {
     throw new Error(
       `Invalid stage "${stage}".`
     );
