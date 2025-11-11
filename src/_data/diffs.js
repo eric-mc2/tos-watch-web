@@ -1,4 +1,4 @@
-import { BlobServiceClient } from '@azure/storage-blob';
+import { BlobServiceClient, StorageSharedKeyCredential } from '@azure/storage-blob';
 import { streamToBuffer, parseBlobPath, isDataPath } from './_common.js';
 import path from 'path';
 
@@ -27,24 +27,31 @@ export default async function() {
 }
 
 async function downloadData() {
-  const connectionString = process.env.AZURE_STORAGE_CONNECTION_STRING;
+  const accountName = process.env.AZURE_STORAGE_ACCOUNT_NAME;
+  const accountKey = process.env.AZURE_STORAGE_ACCOUNT_KEY;
+  const blobEndpoint = process.env.AZURE_STORAGE_BLOB_ENDPOINT;
   const containerName = process.env.AZURE_STORAGE_CONTAINER_NAME;
+  
   const dryRun = process.argv.includes('--dry-run');
   const data = [];
 
-  if (!connectionString || !containerName) {
+  if (!accountName || !accountKey || !blobEndpoint || !containerName) {
     throw new Error('Missing required environment variables. Check your .env file for AZURE_STORAGE_CONNECTION_STRING and AZURE_STORAGE_CONTAINER_NAME');
   }
 
   try {
     console.log(`Connecting to container: ${containerName}`);
-    const blobServiceClient = BlobServiceClient.fromConnectionString(connectionString);
+    // Note: Can't use fromConnectionString bc its not interoperable with Azurite URI
+    const blobServiceClient = new BlobServiceClient(
+      `${blobEndpoint}/${accountName}`, 
+      new StorageSharedKeyCredential(accountName, accountKey)
+    );
     const containerClient = blobServiceClient.getContainerClient(containerName);
-
+    
     const allBlobs = await Array.fromAsync(containerClient.listBlobsFlat());
     const validBlobs = allBlobs.map(b => b.name).filter(isDataPath);
     let blobCount = validBlobs.length;
-
+  
     for (var i = 0; i < blobCount; i ++) {
         const blob = validBlobs[i];
         const blobClient = containerClient.getBlockBlobClient(blob);
