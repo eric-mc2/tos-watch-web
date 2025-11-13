@@ -14,9 +14,9 @@ layout: page
         </tr>
         </thead>
         <tbody>
-        {% for row in services %}
+        {% for row in companies.companySummaries %}
         <tr>
-            <td>{{ row.company }}</td>
+            <td><a href="../service/{{ row.company }}">{{ row.company }}</a></td>
             <td>{{ row.rating }}</td>
             <td><a href="../diffs/{{ row.dataKey }}">{{ row.date }}</a></td>
         </tr>

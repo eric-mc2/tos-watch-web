@@ -1,0 +1,49 @@
+---
+title: Diffs
+permalink: /diffs/index.html
+layout: page
+---
+
+
+<article class="styleguide | wrapper flow">
+  <header class="intro flow region">
+    <p>
+      Search for ToS changes by date, service, and policy name.
+    </p>
+  </header>
+
+  <table>
+    <thead>
+      <tr>
+        <th></th>
+        <th>Rating</th>
+        <th>Company</th>
+        <th>Policy</th>
+        <th>Date</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for row in diffs.diffRows %}
+      <tr>
+        <td>
+          {# https://icon-sets.iconify.design/tabler/?icon-filter=file #}
+          <a href={{ row.dataKey }}>
+          <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" style="width: 36px; height: 36px; display: inline-block;">
+              <g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path d="M14 3v4a1 1 0 0 0 1 1h4"/><path d="M17 21H7a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h7l5 5v11a2 2 0 0 1-2 2m-8-4h6m-6-4h6"/></g>
+            </svg>
+          </a>
+        </td>
+        <td>{{ row.passfail }}</td>
+        <td>{{ row.company }}</td>
+        <td>{{ row.policy }}</td>
+        <td>{{ row.date }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+</article>
+
+{%- css "local" -%}
+  {%- include 'css/table.css' -%}
+{%- endcss -%}

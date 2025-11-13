@@ -1,0 +1,40 @@
+---
+pagination:
+  data: diffs.diffSummaries
+  size: 1
+  alias: item
+permalink: "diffs/{{ item.metadata.dataKey }}/index.html"
+layout: page
+---
+
+
+<h1>{{ item.metadata.company}} | {{ item.metadata.policy }} </h1>
+
+<strong>Revision Date: {{ item.metadata.date }}</strong>
+
+{% set archiveUrl = manifests[item.metadata.dataKey] %}
+{% if archiveUrl %}
+  {% set original = "https://web.archive.org/web/" + archiveUrl %}
+  <strong><a href="{{ original }}">Original</a></strong>
+{% endif %}
+
+<h2>Legally important? {{ "yes" if item.content.legally_substantive.rating else "no" }} </h2>
+
+<p>{{item.content.legally_substantive.explanation}}</p>
+
+<h2>Practically important? {{ "yes" if item.content.practically_substantive.rating else "no" }} </h2>
+
+<p>{{item.content.practically_substantive.explanation}}</p>
+
+<strong>Tags:</strong>
+<ol>
+  {% for tag in item.content.change_keywords %}
+  <li>{{ tag }}</li>
+  {% endfor %}
+  {% for tag in item.content.subject_keywords %}
+  <li>{{ tag }}</li>
+  {% endfor %}
+  {% for tag in item.content.helm_keywords %}
+  <li>{{ tag }}</li>
+  {% endfor %}
+</ol>
