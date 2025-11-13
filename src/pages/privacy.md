@@ -14,7 +14,7 @@ I respect the EU General Data Protection Regulation (GDPR)[^1] and this policy d
 
 **What background data is collected?**
 <!-- TODO: Integrate GA -->
-This site uses Google Analytics to see if literally anyone besides myself are visiting it. Hopefully it's tech recruiters.
+This site uses Google Analytics to see if literally anyone besides myself is visiting it.
 
 **How do I use the data you provide?**
 This website does not collect any data.
@@ -30,7 +30,7 @@ This website transmits itself using HTTPS, encrypting all data between the brows
 If you have any questions or doubts, please contact me: {{ personal.email }}.
 
 **Changes to the policy**
-If I change the content of this policy, those changes will be effective at the time I post them here. (Yes I even [track](/services/who-knows.index) my own policy page 😉)
+If I change the content of this policy, those changes will be effective at the time I post them here. (Yes I even [track](/services/tos-watch.index) my own policy page 😉)
 
 **Complaints**
 If you have any reason to complain about the way I handle your privacy, please contact me by email: {{ personal.email }}.

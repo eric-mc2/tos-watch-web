@@ -4,8 +4,8 @@ permalink: /index.html
 title: 'ToS Watch'
 description: 'Summaries and ratings of changes to consumer terms of service agreements.'
 blog:
-  title: 'Blog'
-  intro: "Might re-use this for policies or services list..."
+  title: 'Highlights'
+  intro: "Interesting policy changes..."
 ---
 
 <div class="wrapper">
@@ -18,32 +18,29 @@ blog:
 
   <article class="full | region">
     <div class="prose wrapper flow">
-      <h2 id="an-eleventy-starter">What do I want to write?</h2>
+      <h2 id="an-eleventy-starter">
+        Didn't read the fine print?
+      </h2>
       <p>
-        Maybe talk about the project in a paragrph here?
+        Curious what it actually said?
       </p>
       <p>
-        <strong>Or</strong> talk about something else.
-        You can <a href="/about/">link</a> to stuff.
+        What data do sites collect about you? What speech do they allow or limit?
+        What are their policies for banning users?
+      </p>
+      <p>
+        This site tracks changes to those kinds of agreements.
+        When changes are benign, we publish it.
+        When changes are sketchy, we publish it.
+      </p>
+      <h3>
+        Why does it matter?
+      </h3>
+      <p>
+        Across the internet, we have more choice than we think. And we have rights. 
+        Companies do respond to pressure when they are called out. 
+        <strong>As long as someone reads the contract.</strong>
       </p>
     </div>
   </article>
-
-  <section class="full | region">
-    <div class="prose wrapper flow">
-      <h2>{{ blog.title }}</h2>
-      {% if blog.intro %}
-        <p>{{ blog.intro }}</p>
-      {% endif %}
-      <div class="feature |  region region-space-l">
-        <custom-masonry layout="50-50">
-          {% set itemList = collections.allPosts %}
-					{% asyncEach item in itemList.slice(0, 4) %}
-            {% set headingLevel = "h3" %}
-						{% include "partials/card-blog.njk" %}
-					{% endeach %}
-        </custom-masonry>
-      </div>
-    </div>
-  </section>
 </div>
