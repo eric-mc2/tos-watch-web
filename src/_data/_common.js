@@ -209,6 +209,7 @@ function getClient(){
     new StorageSharedKeyCredential(accountName, accountKey)
   );
   client = blobServiceClient.getContainerClient(containerName);
+  console.log(`Created container client ${containerName}. Container exists: ${client.exists()}`)
   return client;
 }
 
