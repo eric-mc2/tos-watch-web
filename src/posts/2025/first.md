@@ -1,7 +1,7 @@
 ---
 title: 'ToS Watch v0.1'
 description: "Going live with the site!"
-date: 2025-11-11
+date: 2025-11-20
 layout: post
 ---
 

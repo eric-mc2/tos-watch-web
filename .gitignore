@@ -16,3 +16,6 @@ src/_includes/scripts
 __azurite*
 __blobstorage*
 AzuriteConfig
+
+# Macos
+.DS_Store

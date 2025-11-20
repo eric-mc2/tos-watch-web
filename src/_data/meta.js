@@ -10,17 +10,16 @@ export const skipContent = 'Skip to content';
 export const author = {
   name: 'Eric Chandler', // i.e. Lene Saile - page / blog author's name. Must be set.
   avatar: '/icon-512x512.png', // path to the author's avatar. In this case just using a favicon.
-  email: 'support@toswatch.info', // i.e. hola@lenesaile.com - email of the author
+  email: 'support@tos-watch.com', // i.e. hola@lenesaile.com - email of the author
   website: 'https://eric-mc2.github.io', // i.e. https.://www.lenesaile.com - the personal site of the author
   // fediverse: '@lene@front-end.social' // used for highlighting journalism on the fediverse. Can be Mastodon, Flipboard, Threads, WordPress (with the ActivityPub plugin installed), PeerTube, Pixelfed, etc. https://blog.joinmastodon.org/2024/07/highlighting-journalism-on-mastodon/
 };
 export const creator = {
   name: 'Eric Chandler', // i.e. Lene Saile - creator's (developer) name.
-  email: 'support@toswatch.info',
+  email: 'support@tos-watch.com',
   website: 'https://eric-mc2.github.io',
   // social: 'https://front-end.social/@lene'
 };
-export const pathToSvgLogo = 'src/assets/svg/misc/logo.svg'; // used for favicon generation
 export const themeColor = '#dd4462'; // used in manifest, for example primary color value
 export const themeLight = '#f8f8f8'; // used for meta tag theme-color, if light colors are prefered. best use value set for light bg
 export const themeDark = '#2e2e2e'; // used for meta tag theme-color, if dark colors are prefered. best use value set for dark bg

@@ -7,7 +7,7 @@ layout: page
 
 Ever wonder what is hiding in that terms of service update? Let's find out. 
 
-This site was inspired by the incident when Zoom announced it would [use your conversations as training data](https://therecord.media/zoom-ai-terms-of-service-update) and **no one noticed for six months**.
+This site was inspired by the incident when Zoom announced it would [use everyone's conversations as training data](https://therecord.media/zoom-ai-terms-of-service-update) and **no one noticed for six months**.
 
 
 **Theory of Change:**

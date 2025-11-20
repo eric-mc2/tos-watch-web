@@ -205,7 +205,7 @@ function getClient(){
   
   // Note: Can't use fromConnectionString bc its not interoperable with Azurite URI
   const blobServiceClient = new BlobServiceClient(
-    `${blobEndpoint}/${accountName}`,
+    `${blobEndpoint}`,
     new StorageSharedKeyCredential(accountName, accountKey)
   );
   client = blobServiceClient.getContainerClient(containerName);
