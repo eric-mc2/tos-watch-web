@@ -209,7 +209,6 @@ function getClient(){
     new StorageSharedKeyCredential(accountName, accountKey)
   );
   client = blobServiceClient.getContainerClient(containerName);
-  console.log(`Created container client ${containerName}. Container exists: ${client.exists()}`)
   return client;
 }
 
@@ -231,10 +230,12 @@ async function downloadJsonBlob(filename) {
 async function downloadData(fileFilter) {
   const dryRun = process.argv.includes('--dry-run');
   const data = [];
-  let allBlobs = null;
+  let allBlobs = [];
 
   try {
-    allBlobs = await Array.fromAsync(getClient().listBlobsFlat());
+    for await (const blob of getClient().listBlobsFlat()) {
+      allBlobs.push(blob);
+    }
   } catch (error) {
     throw new Error('Error fetching blob list:', error.message);
   }
