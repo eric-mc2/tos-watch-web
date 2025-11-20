@@ -230,38 +230,45 @@ async function downloadJsonBlob(filename) {
 async function downloadData(fileFilter) {
   const dryRun = process.argv.includes('--dry-run');
   const data = [];
+  let allBlobs = null;
 
   try {
-    const allBlobs = await Array.fromAsync(getClient().listBlobsFlat());
-    const validBlobs = allBlobs.map(b => b.name).filter(fileFilter);
-    let blobCount = validBlobs.length;
-
-    for (var i = 0; i < blobCount; i++) {
-      const blob = validBlobs[i];
-      let blobContent = null;
-      if (dryRun) {
-        console.log(`[DRY RUN] Would download: ${blob} -> ${localFilename}`);
-        if (i < DRY_RUN_DATA.length) {
-          blobContent = DRY_RUN_DATA[i];
-        }
-      } else {
-        console.log(`Downloading: ${blob}`);
-        blobContent = await downloadJsonBlob(blob);
-      }
-      data.push({ metadata: parseMetadata(blob), content: blobContent });
-    }
-
-    if (blobCount === 0) {
-      console.log('No JSON files found in container');
-    } else if (!dryRun) {
-      console.log(`✅ Successfully downloaded ${blobCount} JSON files.`);
-    } else {
-      console.log(`[DRY RUN] Found ${blobCount} JSON files that would be downloaded`);
-    }
-
+    allBlobs = await Array.fromAsync(getClient().listBlobsFlat());
   } catch (error) {
-    throw new Error('Error fetching blob data:', error.message);
+    throw new Error('Error fetching blob list:', error.message);
   }
+
+  const validBlobs = allBlobs.map(b => b.name).filter(fileFilter);
+  let blobCount = validBlobs.length;
+
+  for (var i = 0; i < blobCount; i++) {
+    const blob = validBlobs[i];
+    let blobContent = null;
+    if (dryRun) {
+      console.log(`[DRY RUN] Would download: ${blob} -> ${localFilename}`);
+      if (i < DRY_RUN_DATA.length) {
+        blobContent = DRY_RUN_DATA[i];
+      }
+    } else {
+      console.log(`Downloading: ${blob}`);
+      try {
+        blobContent = await downloadJsonBlob(blob);
+      } catch (error) {
+        throw new Error('Error downloading blob:', error.message);
+      }
+    }
+    data.push({ metadata: parseMetadata(blob), content: blobContent });
+  }
+
+  if (blobCount === 0) {
+    console.log('No JSON files found in container');
+  } else if (!dryRun) {
+    console.log(`✅ Successfully downloaded ${blobCount} JSON files.`);
+  } else {
+    console.log(`[DRY RUN] Found ${blobCount} JSON files that would be downloaded`);
+  }
+
+  
   return data;
 }
 

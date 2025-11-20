@@ -1,7 +1,4 @@
-import { isManifestPath, downloadData, downloadJsonBlob,  } from './_common.js';
-import path from 'path';
-import { Stages } from './stages.js';
-import { BlobServiceClient, StorageSharedKeyCredential } from '@azure/storage-blob';
+import { isManifestPath, downloadData } from './_common.js';
 
 let cache = null; // Persists during build runtime.
 
