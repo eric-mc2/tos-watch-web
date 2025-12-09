@@ -12,9 +12,10 @@ This site was inspired by the incident when Zoom announced it would [use everyon
 
 **Theory of Change:**
 
-We all know that Terms of Service are broken and we all live with it. We don't have a lot of viable alternatives to the platforms we use. We've normalized the way our personal data is traded and sold.
+We all know that Terms of Service are broken and we all live with it. Broken meaning they are difficult to read and arguably do not provide informed consent. 
 
-But maybe the next ToS update is one step too far. Every update is a decision point. 
+In a functioning market, firms should compete to make better commitments to privacy and community safety.
+
+ToS Watch surfaces these commitments, helping consumers make informed choices where they entrust their data. Each ToS update is a potential decision point.
 
 To suggest a service or document, email {{ personal.email }}.
-
