@@ -1,14 +1,24 @@
-import { isSummaryPath, downloadData } from './_common.js';
+import { isSummaryPath, isDiffPath, downloadJsonData } from './_common.js';
 
-let cache = null; // Persists during build runtime.
+let summaryCache = null; // Persists during build runtime.
+let diffCache = null; // Persists during build runtime.
 
 /**
  * Retrieves the LLM diff summary
  */
 async function diffSummaries() {
-  if (cache) return cache;
-  cache = await downloadData(isSummaryPath);
-  return cache;
+  if (summaryCache) return summaryCache;
+  summaryCache = await downloadJsonData(isSummaryPath);
+  return summaryCache;
+}
+
+/**
+ * Retrieves the diff
+ */
+async function diffActuals() {
+  if (diffCache) return diffCache;
+  diffCache = await downloadJsonData(isDiffPath);
+  return diffCache;
 }
 
 /**
@@ -17,7 +27,7 @@ async function diffSummaries() {
 async function diffRows() { 
   const data = await diffSummaries();
   const rows = data.map(d => {
-    const rating = d.content.legally_substantive.rating + d.content.practically_substantive.rating;
+    const rating = Number(d.content.practically_substantive.rating);
     const passfail = rating === 0 ? "✅" : rating === 1 ? "⚠️"  : "‼️";
     return {...d.metadata, passfail};
   });
@@ -25,8 +35,8 @@ async function diffRows() {
 }
 
 export default async function() {
-  const summaries = await diffSummaries();
-  return {diffSummaries: summaries,
+  return {diffSummaries: await diffSummaries(),
+          diffActuals: await diffActuals(),
           diffRows: await diffRows(),
   }
 };

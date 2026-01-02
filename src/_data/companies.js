@@ -18,13 +18,13 @@ async function companySummaries() {
 }
 
 function summary(items, mode) {
+  // The Recent mode sort of makes sense on the page if it is AFTER the link to the update.
   if (mode === "RECENT") {
     const maxDate = items
       .map(x => x.metadata.date)
       .reduce((acc, val, idx) => acc.val > val ? acc : {val, idx}, {val: "1970-01-01", idx:-1});
     const dataKey = items[maxDate.idx].metadata.dataKey;
-    const rate = items[maxDate.idx].content.legally_substantive.rating + 
-                  items[maxDate.idx].content.practically_substantive.rating;
+    const rate = Number(items[maxDate.idx].content.practically_substantive.rating);
     const rating = rate === 0 ? "✅" : rate === 1 ? "⚠️"  : "‼️";
     const date = maxDate.val;
     
@@ -32,7 +32,7 @@ function summary(items, mode) {
   
   } else if (mode === "WORST") {
     const maxRate = items
-      .map(x => x.content.practically_substantive.rating + x.content.legally_substantive.rating)
+      .map(x => x.content.practically_substantive.rating)
       .reduce((acc, val, idx) => acc.val > val ? acc : {val, idx}, {val: 0, idx:-1});
     const dataKey = items[maxRate.idx].metadata.dataKey;
     const date = items[maxRate.idx].metadata.date;

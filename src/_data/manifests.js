@@ -1,10 +1,10 @@
-import { isManifestPath, downloadData } from './_common.js';
+import { isManifestPath, downloadJsonData } from './_common.js';
 
 let cache = null; // Persists during build runtime.
 
 async function getData() {
   if (cache) return cache;
-  cache = await downloadData(isManifestPath);
+  cache = await downloadJsonData(isManifestPath);
   return cache;
 }
 

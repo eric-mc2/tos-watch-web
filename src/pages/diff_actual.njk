@@ -1,0 +1,95 @@
+---
+pagination:
+  data: diffs.diffActuals
+  size: 1
+  alias: item
+permalink: "diff-actuals/{{ item.metadata.dataKey }}/index.html"
+layout: page
+---
+
+<style>
+  .container {
+      border: 1px solid #ddd;
+      font-family: sans-serif;
+  }
+  .row {
+      display: flex;
+      border-bottom: 1px solid #ddd;
+  }
+  .row:last-child {
+      border-bottom: none;
+  }
+  .column {
+      flex: 1;
+      padding: 8px;
+  }
+  .column:first-child {
+      flex: 0 0 100px;
+      border-right: 1px solid #ddd;
+  }
+  .diff_add {
+      background-color: #d4fcbc; /* light green */
+      color: #006400;            /* dark green text */
+  }
+  .diff_sub {
+      background-color: #fbb6b6; /* light red */
+      color: #8b0000;            /* dark red text */
+      /* text-decoration: line-through; */
+  }
+  </style>
+
+<h1>{{ item.metadata.company}} | {{ item.metadata.policy }} </h1>
+
+<strong>Revision Date: {{ item.metadata.date }}</strong>
+
+{% set archiveUrl = manifests[item.metadata.dataKey] %}
+{% if archiveUrl %}
+  {% set original = "https://web.archive.org/web/" + archiveUrl %}
+  <strong><a href="{{ original }}">Revision Snapshot</a></strong>
+{% endif %}
+
+{% set pathKey = item.metadata.company + "/" + item.metadata.policy %}
+{% set latestUrl = path_urls[pathKey] %}
+{% if latestUrl %}
+  <strong><a href="{{ latestUrl }}">Current Version</a></strong>
+{% endif %}
+
+{% set summaryUrl = diffs.diffSummaries[item.metadata.dataKey] %}
+{% if summaryUrl %}
+  <strong><a href="{{ summaryUrl }}">Summary</a></strong>
+{% endif %}
+
+<strong><a href="/diff-summaries/{{ item.metadata.dataKey }}">See the summary</a></strong>
+
+
+<div class="container">
+    <div class="row">
+        <div class="column">Line Index</div>
+        <div class="column">Before</div>
+        <div class="column">After</div>
+    </div>
+    {% for idx, rows in item.content.diffs | groupby("idx") %}
+    {% set beforeContent = [] %}
+    {% set afterContent = [] %}
+    {% for row in rows %}
+      {% if row.tag == "equal" %}
+        {% set _ = beforeContent.push(row.before) %}
+        {% set _ = afterContent.push(row.after) %}
+      {% elif row.tag == "replace" %}
+        {% set _ = beforeContent.push('<span class="diff_sub">' + row.before + '</span>') %}
+        {% set _ = afterContent.push('<span class="diff_add">' + row.after + '</span>') %}
+      {% elif row.tag == "delete" %}
+        {% set _ = beforeContent.push('<span class="diff_sub">' + row.before + '</span>') %}
+      {% elif row.tag == "insert" %}
+        {% set _ = afterContent.push('<span class="diff_add">' + row.after + '</span>') %}
+      {% endif %}
+    {% endfor %}
+    <div class="row">
+      <div class="column">{{idx}}</div>
+      <div class="column">{{ beforeContent | join('') | safe }}</div>
+      <div class="column">{{ afterContent | join('') | safe }}</div>
+    </div>
+    {% endfor %}
+      
+</div>
+

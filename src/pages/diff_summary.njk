@@ -1,0 +1,31 @@
+---
+pagination:
+  data: diffs.diffSummaries
+  size: 1
+  alias: item
+permalink: "diff-summaries/{{ item.metadata.dataKey }}/index.html"
+layout: page
+---
+
+
+<h1>{{ item.metadata.company}} | {{ item.metadata.policy }} </h1>
+
+<strong>Revision Date: {{ item.metadata.date }}</strong>
+
+{% set archiveUrl = manifests[item.metadata.dataKey] %}
+{% if archiveUrl %}
+  {% set original = "https://web.archive.org/web/" + archiveUrl %}
+  <strong><a href="{{ original }}">Revision Snapshot</a></strong>
+{% endif %}
+
+{% set pathKey = item.metadata.company + "/" + item.metadata.policy %}
+{% set latestUrl = path_urls[pathKey] %}
+{% if latestUrl %}
+  <strong><a href="{{ latestUrl }}">Current Version</a></strong>
+{% endif %}
+
+<strong><a href="/diff-actuals/{{ item.metadata.dataKey }}">See the changes</a></strong>
+
+<h2>Practically important? {{ "yes" if item.content.practically_substantive.rating else "no" }} </h2>
+
+<p>{{item.content.practically_substantive.reason}}</p>

@@ -9,16 +9,16 @@ layout: page
         <thead>
         <tr>
             <th>Company</th>
-            <th>Rating</th>
             <th>Latest Update</th>
+            <th>Rating</th>
         </tr>
         </thead>
         <tbody>
         {% for row in companies.companySummaries %}
         <tr>
             <td><a href="../service/{{ row.company }}">{{ row.company }}</a></td>
+            <td><a href="../diff-summaries/{{ row.dataKey }}">{{ row.date }}</a></td>
             <td>{{ row.rating }}</td>
-            <td><a href="../diffs/{{ row.dataKey }}">{{ row.date }}</a></td>
         </tr>
         {% endfor %}
         </tbody>
