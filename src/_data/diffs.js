@@ -1,4 +1,5 @@
-import { isSummaryPath, isDiffPath, downloadJsonData } from './_common.js';
+import path from 'path';
+import { isSummaryPath, isDiffPath, downloadJsonData, parseBlobPath } from './_common.js';
 
 let summaryCache = null; // Persists during build runtime.
 let diffCache = null; // Persists during build runtime.
@@ -17,7 +18,37 @@ async function diffSummaries() {
  */
 async function diffActuals() {
   if (diffCache) return diffCache;
-  diffCache = await downloadJsonData(isDiffPath);
+  
+  // Get summaries first to determine which diffs we need
+  const summaries = await diffSummaries();
+  
+  // Build a set of company/policy/timestamp combinations from summaries by parsing filepaths
+  const summaryKeys = new Set(
+    summaries.map(s => {
+      const parts = parseBlobPath(s.metadata.filepath);
+      // For summary files, timestamp is in the path as a separate segment
+      const timestamp = parts.timestamp;
+      return `${parts.company}/${parts.policy}/${timestamp}`;
+    })
+  );
+  
+  // Filter function that only downloads diffs with corresponding summaries
+  const isSummarizedDiff = (filepath) => {
+    if (!isDiffPath(filepath)) return false;
+    
+    try {
+      const parts = parseBlobPath(filepath);
+      // For diff files, timestamp is in the filename (without .json extension)
+      const timestamp = path.parse(parts.filename).name;
+      const key = `${parts.company}/${parts.policy}/${timestamp}`;
+      
+      return summaryKeys.has(key);
+    } catch (error) {
+      return false;
+    }
+  };
+  
+  diffCache = await downloadJsonData(isSummarizedDiff);
   return diffCache;
 }
 
