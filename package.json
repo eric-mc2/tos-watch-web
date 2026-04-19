@@ -6,14 +6,13 @@
   "license": "ISC",
   "type": "module",
   "engines": {
-    "node": ">=20.x.x"
+    "node": ">=22.x.x"
   },
   "scripts": {
     "clean": "rimraf dist src/_includes/css src/_includes/scripts",
     "clean:og": "rimraf src/assets/og-images",
     "colors": "node ./src/_config/setup/create-colors.js",
     "screenshots": "node ./src/_config/setup/generate-screenshots.js",
-    "blobCanary": "node ./_blobCanary.js",
     "dev:11ty": "cross-env ELEVENTY_ENV=development eleventy --serve",
     "build:11ty": "cross-env ELEVENTY_ENV=production eleventy",
     "start": "npm run dev:11ty",
@@ -28,7 +27,7 @@
   "keywords": [],
   "repository": {
     "type": "git",
-    "url": "https://github.com/eric-mc2/who-knows.git"
+    "url": "https://github.com/eric-mc2/tos-watch-web.git"
   },
   "dependencies": {
     "@11ty/eleventy": "^3.1.2",

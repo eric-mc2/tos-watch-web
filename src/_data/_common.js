@@ -63,7 +63,7 @@ function parseSummaryPath(blobPath, container = "documents") {
   const { stage, company, policy, timestamp, filename } = parts;
 
   // Stage validation 
-  if (stage != Stages.SUMMARY_CLEAN) {
+  if (stage != Stages.JUDGE_CLEAN) {
     throw new Error(
       `Invalid stage "${stage}".`
     );
@@ -391,4 +391,4 @@ function parseMetadata5(filepath, parsedPath) {
   return meta;
 }
 
-export { downloadJsonData, downloadTextData, downloadJsonBlob, isManifestPath, isSummaryPath, isDiffPath};
+export { downloadJsonData, downloadTextData, downloadJsonBlob, isManifestPath, isSummaryPath, isDiffPath, parseBlobPath };

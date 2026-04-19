@@ -20,7 +20,10 @@ describe('isSummaryPath', () => {
   it('should correctly identify summary paths', () => {
     const testCases = [
       // [filepath, expectedResult]
-      [`documents/${Stages.SUMMARY_CLEAN}/company-a/policy-1/12345/latest.json`, true],
+      [`documents/${Stages.JUDGE_CLEAN}/company-a/policy-1/12345/latest.json`, true],
+      [`documents/${Stages.JUDGE_CLEAN}/company-a/policy-1/12345/ABCDE.json`, false],
+      [`documents/${Stages.JUDGE_CLEAN}/company-a/policy-1/12345.json`, false],
+      [`documents/${Stages.SUMMARY_CLEAN}/company-a/policy-1/12345/latest.json`, false],
       [`documents/${Stages.SUMMARY_CLEAN}/company-a/policy-1/12345/ABCDE.json`, false],
       [`documents/${Stages.SUMMARY_CLEAN}/company-a/policy-1/12345.json`, false],
       [`documents/${Stages.SUMMARY_RAW}/company-a/policy-1/12345/latest.json`, false],
